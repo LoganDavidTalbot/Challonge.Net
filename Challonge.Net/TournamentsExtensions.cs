@@ -48,5 +48,15 @@ namespace Challonge.Net
                 return _result.Body;
             }
         }
+        
+        public static void DeleteRegion(this ITournaments operations, string id)
+        {
+            operations.DeleteRegionAsync(id).GetAwaiter().GetResult();
+        }
+        
+        public static async Task DeleteRegionAsync(this ITournaments operations, string id, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var _result = await operations.DeleteTournamentWithHttpMessagesAsync(id, null, cancellationToken).ConfigureAwait(false);
+        }
     }
 }
